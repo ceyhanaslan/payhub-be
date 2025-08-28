@@ -19,6 +19,8 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+
+app.UseMiddleware<ApiKeyJwtMiddleware>();
 app.UseHttpsRedirection();
 
 // ...existing code...

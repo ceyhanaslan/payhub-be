@@ -3021,7 +3021,8 @@
     ]
   },
   "packageFolders": {
-    "/Users/ceyhanaslan/.nuget/packages/": {}
+    "/Users/ceyhanaslan/.nuget/packages/": {},
+    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
@@ -3032,6 +3033,9 @@
       "packagesPath": "/Users/ceyhanaslan/.nuget/packages/",
       "outputPath": "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Infrastructure/obj/",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+      ],
       "configFilePaths": [
         "/Users/ceyhanaslan/.nuget/NuGet/NuGet.Config"
       ],
@@ -3062,9 +3066,9 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
+        "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
@@ -3105,7 +3109,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/9.0.100-rc.2.24474.11/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
