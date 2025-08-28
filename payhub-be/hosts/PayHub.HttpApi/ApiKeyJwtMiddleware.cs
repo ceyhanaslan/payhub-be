@@ -1,7 +1,8 @@
-using Microsoft.AspNetCore.Http;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Http;
 
 public class ApiKeyJwtMiddleware
 {

@@ -1,8 +1,9 @@
 namespace PayHub.Application.Services;
 using System;
-using System.Threading.Tasks;
-using PayHub.Domain;
 using System.Collections.Concurrent;
+using System.Threading.Tasks;
+
+using PayHub.Domain;
 
 public interface ITransactionLogService
 {
