@@ -8,3 +8,7 @@
 **/*.user
 **/.DS_Store
 **/.cache
+bin/
+obj/
+*.assets.cache
+*.FileListAbsolute.txt
