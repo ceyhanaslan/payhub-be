@@ -1,14 +1,28 @@
-**/bin
-**/obj
-**/Migrations
-.vs
-**/*.cache
-**/*.db
-**/*.suo
-**/*.user
-**/.DS_Store
-**/.cache
+
+# Build output
 bin/
 obj/
+
+# EF Migrations
+**/Migrations
+
+# VS Code
+.vscode/
+
+# Rider / VS / tooling
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs
+
+# dotnet generated
 *.assets.cache
 *.FileListAbsolute.txt
+project.lock.json
+
+# Cache & system
+**/*.cache
+**/*.db
+**/.DS_Store
+**/.cache
