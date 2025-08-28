@@ -1,0 +1,18 @@
+{
+  "ProviderRules": [
+    {
+      "Provider": "ExampleBank",
+      "CommissionRate": 1.5,
+      "BankBins": ["400000", "500000"],
+      "MerchantIds": ["merchant1", "merchant2"],
+      "Priority": 1
+    },
+    {
+      "Provider": "FallbackBank",
+      "CommissionRate": 2.0,
+      "BankBins": ["600000", "700000"],
+      "MerchantIds": ["merchant3"],
+      "Priority": 2
+    }
+  ]
+}
