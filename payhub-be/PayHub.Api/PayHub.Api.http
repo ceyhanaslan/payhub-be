@@ -1,0 +1,6 @@
+@PayHub.Api_HostAddress = http://localhost:5150
+
+GET {{PayHub.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

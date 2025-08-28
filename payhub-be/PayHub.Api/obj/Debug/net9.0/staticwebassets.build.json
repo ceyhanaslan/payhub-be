@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "o8EDsXfdXGh5vaRyLiuEOzRmUNzFoBunUQv2lCHvU2A=",
+  "Source": "PayHub.Api",
+  "BasePath": "_content/PayHub.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

@@ -1,0 +1,12 @@
+/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/PayHub.Domain/bin/Debug/net9.0/PayHub.Domain.deps.json
+/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/PayHub.Domain/bin/Debug/net9.0/PayHub.Domain.dll
+/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/PayHub.Domain/bin/Debug/net9.0/PayHub.Domain.pdb
+/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/PayHub.Domain/obj/Debug/net9.0/PayHub.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/PayHub.Domain/obj/Debug/net9.0/PayHub.Domain.AssemblyInfoInputs.cache
+/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/PayHub.Domain/obj/Debug/net9.0/PayHub.Domain.AssemblyInfo.cs
+/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/PayHub.Domain/obj/Debug/net9.0/PayHub.Domain.csproj.CoreCompileInputs.cache
+/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/PayHub.Domain/obj/Debug/net9.0/PayHub.Domain.sourcelink.json
+/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/PayHub.Domain/obj/Debug/net9.0/PayHub.Domain.dll
+/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/PayHub.Domain/obj/Debug/net9.0/refint/PayHub.Domain.dll
+/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/PayHub.Domain/obj/Debug/net9.0/PayHub.Domain.pdb
+/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/PayHub.Domain/obj/Debug/net9.0/ref/PayHub.Domain.dll
