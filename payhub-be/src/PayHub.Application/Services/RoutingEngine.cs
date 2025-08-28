@@ -25,7 +25,9 @@ public class RoutingEngine
         return JsonSerializer.Deserialize<RoutingConfig>(json) ?? new RoutingConfig();
     }
 
-    public async Task<IPaymentProvider> SelectProviderAsync(string merchantId, string cardBin, decimal amount)
+public async Task<IPaymentProvider> SelectProviderAsync(string merchantId, string cardBin, decimal amount)
+{
+    return await Task.Run(() =>
     {
         var rules = _config.ProviderRules
             .Where(r => r.MerchantIds.Contains(merchantId) || r.BankBins.Contains(cardBin))
@@ -39,7 +41,8 @@ public class RoutingEngine
                 return provider;
         }
         throw new Exception("No suitable provider found");
-    }
+    });
+}
 
     public async Task<bool> ProcessWithFallbackAsync(string merchantId, string cardBin, decimal amount, PaymentRequest request)
     {
