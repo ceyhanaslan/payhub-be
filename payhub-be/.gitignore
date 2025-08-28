@@ -2,3 +2,9 @@
 **/obj
 **/Migrations
 .vs
+**/*.cache
+**/*.db
+**/*.suo
+**/*.user
+**/.DS_Store
+**/.cache
