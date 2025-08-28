@@ -1,6 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace PayHub.Application.CQRS
 {
@@ -19,31 +21,30 @@ namespace PayHub.Application.CQRS
 
     public class ValidationMiddleware<TResponse> : IMiddleware<TResponse>
     {
+        private readonly IServiceProvider _serviceProvider;
+        public ValidationMiddleware(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+        }
+
         public async Task<TResponse> Handle(object context, Func<Task<TResponse>> next)
         {
-            // Validation logic (FluentValidation vs entegre edilebilir)
+            var validatorType = typeof(FluentValidation.IValidator<>).MakeGenericType(context.GetType());
+            var validator = _serviceProvider.GetService(validatorType);
+            if (validator != null)
+            {
+                var validateMethod = validatorType.GetMethod("Validate", new[] { context.GetType() });
+                if (validateMethod != null)
+                {
+                    var result = (FluentValidation.Results.ValidationResult?)validateMethod.Invoke(validator, new[] { context });
+                    if (result != null && !result.IsValid)
+                    {
+                        var errors = string.Join(", ", result.Errors.Select(e => e.ErrorMessage));
+                        throw new FluentValidation.ValidationException(errors);
+                    }
+                }
+            }
             return await next();
         }
     }
-
-    // public class TransactionMiddleware<TResponse> : IMiddleware<TResponse>
-    // {
-    //     private readonly IDbContext _dbContext;
-    //     public TransactionMiddleware(IDbContext dbContext) => _dbContext = dbContext;
-    //     public async Task<TResponse> Handle(object context, Func<Task<TResponse>> next)
-    //     {
-    //         using var transaction = await _dbContext.BeginTransactionAsync();
-    //         try
-    //         {
-    //             var result = await next();
-    //             await transaction.CommitAsync();
-    //             return result;
-    //         }
-    //         catch
-    //         {
-    //             await transaction.RollbackAsync();
-    //             throw;
-    //         }
-    //     }
-    // }
 }

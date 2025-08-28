@@ -19,6 +19,14 @@
           "PayHub.Infrastructure.dll": {}
         }
       },
+      "FluentValidation/11.9.0": {
+        "runtime": {
+          "lib/net8.0/FluentValidation.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.9.0.0"
+          }
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "runtime": {
           "lib/net6.0/Humanizer.dll": {
@@ -656,6 +664,7 @@
       },
       "PayHub.Application/1.0.0": {
         "dependencies": {
+          "FluentValidation": "11.9.0",
           "Microsoft.Extensions.DependencyInjection": "9.0.8",
           "Microsoft.Extensions.Logging": "9.0.8",
           "PayHub.Domain": "1.0.0"
@@ -682,6 +691,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "FluentValidation/11.9.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VneVlTvwYDkfHV5av3QrQ0amALgrLX6LV94wlYyEsh0B/klJBW7C8y2eAtj5tOZ3jH6CAVpr4s1ZGgew/QWyig==",
+      "path": "fluentvalidation/11.9.0",
+      "hashPath": "fluentvalidation.11.9.0.nupkg.sha512"
     },
     "Humanizer.Core/2.14.1": {
       "type": "package",

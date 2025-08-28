@@ -59,3 +59,4 @@
 /Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/obj/Debug/net9.0/PayHub.HttpApi.pdb
 /Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/obj/Debug/net9.0/PayHub.HttpApi.genruntimeconfig.cache
 /Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/obj/Debug/net9.0/ref/PayHub.HttpApi.dll
+/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/FluentValidation.dll

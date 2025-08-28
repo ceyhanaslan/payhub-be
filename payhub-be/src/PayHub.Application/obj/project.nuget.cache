@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Ekvc3hqlF48=",
+  "dgSpecHash": "f0O2SJFAs7g=",
   "success": true,
   "projectFilePath": "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Application/PayHub.Application.csproj",
   "expectedPackageFiles": [
+    "/Users/ceyhanaslan/.nuget/packages/fluentvalidation/11.9.0/fluentvalidation.11.9.0.nupkg.sha512",
     "/Users/ceyhanaslan/.nuget/packages/microsoft.extensions.dependencyinjection/8.0.0/microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
     "/Users/ceyhanaslan/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "/Users/ceyhanaslan/.nuget/packages/microsoft.extensions.logging/8.0.0/microsoft.extensions.logging.8.0.0.nupkg.sha512",

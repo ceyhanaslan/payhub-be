@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PayHub.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+390a6f6150a4ec45062a1143444c19aa3b514786")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+96cff001a4bda207d9f4375904cf1e9843424e3b")]
 [assembly: System.Reflection.AssemblyProductAttribute("PayHub.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PayHub.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
