@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+
 using PayHub.Application.CQRS;
 
 [ApiController]

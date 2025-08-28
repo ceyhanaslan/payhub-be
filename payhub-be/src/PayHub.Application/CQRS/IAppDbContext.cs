@@ -1,16 +1,14 @@
-using System.Threading.Tasks;
+namespace PayHub.Application.CQRS;
 using System;
+using System.Threading.Tasks;
 
-namespace PayHub.Application.CQRS
+public interface IAppDbContext
 {
-    public interface IAppDbContext
-    {
-        Task<ITransaction> BeginTransactionAsync();
-    }
+    Task<ITransaction> BeginTransactionAsync();
+}
 
-    public interface ITransaction : IAsyncDisposable
-    {
-        Task CommitAsync();
-        Task RollbackAsync();
-    }
+public interface ITransaction : IAsyncDisposable
+{
+    Task CommitAsync();
+    Task RollbackAsync();
 }

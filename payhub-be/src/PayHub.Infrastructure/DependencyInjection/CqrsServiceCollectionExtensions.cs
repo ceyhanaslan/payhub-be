@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+
 using PayHub.Application.CQRS;
 
 using PayHub.Application.Payments.Commands;
