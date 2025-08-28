@@ -14,9 +14,6 @@
 /Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/PayHub.HttpApi.runtimeconfig.json
 /Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/PayHub.HttpApi.dll
 /Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/PayHub.HttpApi.pdb
-/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/MediatR.dll
-/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/MediatR.Contracts.dll
-/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/MediatR.Extensions.Microsoft.DependencyInjection.dll
 /Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/Microsoft.AspNetCore.JsonPatch.dll
 /Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 /Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/Microsoft.AspNetCore.OpenApi.dll
@@ -32,10 +29,6 @@
 /Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/Microsoft.Extensions.Logging.Abstractions.dll
 /Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/Microsoft.Extensions.Options.dll
 /Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/Microsoft.Extensions.Primitives.dll
-/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/Microsoft.IdentityModel.Abstractions.dll
-/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll
-/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/Microsoft.IdentityModel.Logging.dll
-/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll
 /Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/Microsoft.OpenApi.dll
 /Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/Newtonsoft.Json.dll
 /Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/hosts/PayHub.HttpApi/bin/Debug/net9.0/Newtonsoft.Json.Bson.dll
