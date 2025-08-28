@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="13.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0-rc.2.24474.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../src/PayHub.Application/PayHub.Application.csproj" />
+    <ProjectReference Include="../../src/PayHub.Infrastructure/PayHub.Infrastructure.csproj" />
+    <ProjectReference Include="../../src/PayHub.Domain/PayHub.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

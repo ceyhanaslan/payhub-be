@@ -1,0 +1,222 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Infrastructure/PayHub.Infrastructure.csproj": {}
+  },
+  "projects": {
+    "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Application/PayHub.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Application/PayHub.Application.csproj",
+        "projectName": "PayHub.Application",
+        "projectPath": "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Application/PayHub.Application.csproj",
+        "packagesPath": "/Users/ceyhanaslan/.nuget/packages/",
+        "outputPath": "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/ceyhanaslan/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Domain/PayHub.Domain.csproj": {
+                "projectPath": "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Domain/PayHub.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[13.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/9.0.100-rc.2.24474.11/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Domain/PayHub.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Domain/PayHub.Domain.csproj",
+        "projectName": "PayHub.Domain",
+        "projectPath": "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Domain/PayHub.Domain.csproj",
+        "packagesPath": "/Users/ceyhanaslan/.nuget/packages/",
+        "outputPath": "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/ceyhanaslan/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/9.0.100-rc.2.24474.11/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Infrastructure/PayHub.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Infrastructure/PayHub.Infrastructure.csproj",
+        "projectName": "PayHub.Infrastructure",
+        "projectPath": "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Infrastructure/PayHub.Infrastructure.csproj",
+        "packagesPath": "/Users/ceyhanaslan/.nuget/packages/",
+        "outputPath": "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/ceyhanaslan/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Application/PayHub.Application.csproj": {
+                "projectPath": "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Application/PayHub.Application.csproj"
+              },
+              "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Domain/PayHub.Domain.csproj": {
+                "projectPath": "/Users/ceyhanaslan/Desktop/Projects/payhub-be/payhub-be/src/PayHub.Domain/PayHub.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[7.1.2, )"
+            },
+            "StackExchange.Redis": {
+              "target": "Package",
+              "version": "[2.9.11, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/9.0.100-rc.2.24474.11/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

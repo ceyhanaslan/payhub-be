@@ -1,6 +1,6 @@
 # PayHub
 
-A .NET 9 Web API solution with Clean Architecture.
+A .NET 8 Web API solution with Clean Architecture.
 
 ## Projects
 - **PayHub.Api**: Web API (Controllers, Startup, Middlewares)
