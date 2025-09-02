@@ -13,36 +13,42 @@ public class RoutingEngine
     private readonly RoutingConfig _config;
     private readonly IEnumerable<IPaymentProvider> _providers;
 
-    public RoutingEngine(IEnumerable<IPaymentProvider> providers, RoutingConfig config)
+    public RoutingEngine(IEnumerable<IPaymentProvider> providers)
     {
         _providers = providers;
-        _config = config;
+        _config = LoadConfig();
     }
 
-    public static RoutingConfig LoadConfig(string path)
+    private RoutingConfig LoadConfig()
     {
-        var json = File.ReadAllText(path);
+        var configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "routing.json");
+        if (!File.Exists(configPath))
+        {
+            return new RoutingConfig(); // Return empty config if file doesn't exist
+        }
+
+        var json = File.ReadAllText(configPath);
         return JsonSerializer.Deserialize<RoutingConfig>(json) ?? new RoutingConfig();
     }
 
-public async Task<IPaymentProvider> SelectProviderAsync(string merchantId, string cardBin, decimal amount)
-{
-    return await Task.Run(() =>
+    public async Task<IPaymentProvider> SelectProviderAsync(string merchantId, string cardBin, decimal amount)
     {
-        var rules = _config.ProviderRules
-            .Where(r => r.MerchantIds.Contains(merchantId) || r.BankBins.Contains(cardBin))
-            .OrderBy(r => r.Priority)
-            .ThenBy(r => r.CommissionRate)
-            .ToList();
-        foreach (var rule in rules)
+        return await Task.Run(() =>
         {
-            var provider = _providers.FirstOrDefault(p => p.GetType().Name.Contains(rule.Provider));
-            if (provider != null)
-                return provider;
-        }
-        throw new Exception("No suitable provider found");
-    });
-}
+            var rules = _config.ProviderRules
+                .Where(r => r.MerchantIds.Contains(merchantId) || r.BankBins.Contains(cardBin))
+                .OrderBy(r => r.Priority)
+                .ThenBy(r => r.CommissionRate)
+                .ToList();
+            foreach (var rule in rules)
+            {
+                var provider = _providers.FirstOrDefault(p => p.GetType().Name.Contains(rule.Provider));
+                if (provider != null)
+                    return provider;
+            }
+            throw new Exception("No suitable provider found");
+        });
+    }
 
     public async Task<bool> ProcessWithFallbackAsync(string merchantId, string cardBin, decimal amount, PaymentRequest request)
     {

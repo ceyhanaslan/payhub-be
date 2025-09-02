@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="../PayHub.Domain/PayHub.Domain.csproj" />
-    <ProjectReference Include="../PayHub.Application/PayHub.Application.csproj" />
+    <ProjectReference Include="..\PayHub.Domain\PayHub.Domain.csproj" />
+    <ProjectReference Include="..\PayHub.Application\PayHub.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -10,7 +10,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
     <PackageReference Include="RabbitMQ.Client" Version="7.1.2" />
     <PackageReference Include="StackExchange.Redis" Version="2.9.11" />

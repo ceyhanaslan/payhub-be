@@ -1,0 +1,70 @@
+### API Health Test
+GET http://localhost:5000/api/provider-health
+X-API-KEY: YOUR_API_KEY_HERE
+Authorization: Bearer YOUR_JWT_TOKEN
+
+### Metrics Test
+GET http://localhost:5000/metrics
+
+### Payment Test
+POST http://localhost:5000/api/payments
+Content-Type: application/json
+X-API-KEY: YOUR_API_KEY_HERE
+Authorization: Bearer YOUR_JWT_TOKEN
+
+{
+  "transactionId": "{{guid}}",
+  "amount": 100.0,
+  "currency": "TRY",
+  "bankCode": "400000",
+  "cardToken": "SAMPLE_TOKEN"
+}
+
+### Fallback/Timeout Test (simulate provider error)
+POST http://localhost:5000/api/payments
+Content-Type: application/json
+X-API-KEY: YOUR_API_KEY_HERE
+Authorization: Bearer YOUR_JWT_TOKEN
+
+{
+  "transactionId": "{{guid}}",
+  "amount": 100.0,
+  "currency": "TRY",
+  "bankCode": "600000",
+  "cardToken": "SAMPLE_TOKEN"
+}
+### API Health Test
+GET http://localhost:5000/api/provider-health
+X-API-KEY: YOUR_API_KEY_HERE
+Authorization: Bearer YOUR_JWT_TOKEN
+
+### Metrics Test
+GET http://localhost:5000/metrics
+
+### Payment Test
+POST http://localhost:5000/api/payments
+Content-Type: application/json
+X-API-KEY: YOUR_API_KEY_HERE
+Authorization: Bearer YOUR_JWT_TOKEN
+
+{
+  "transactionId": "{{guid}}",
+  "amount": 100.0,
+  "currency": "TRY",
+  "bankCode": "400000",
+  "cardToken": "SAMPLE_TOKEN"
+}
+
+### Fallback/Timeout Test (simulate provider error)
+POST http://localhost:5000/api/payments
+Content-Type: application/json
+X-API-KEY: YOUR_API_KEY_HERE
+Authorization: Bearer YOUR_JWT_TOKEN
+
+{
+  "transactionId": "{{guid}}",
+  "amount": 100.0,
+  "currency": "TRY",
+  "bankCode": "600000",
+  "cardToken": "SAMPLE_TOKEN"
+}

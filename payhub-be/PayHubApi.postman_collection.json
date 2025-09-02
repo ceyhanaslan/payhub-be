@@ -1,0 +1,84 @@
+{
+  "info": {
+    "name": "PayHub API Test Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Provider Health",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "X-API-KEY", "value": "YOUR_API_KEY_HERE" },
+          { "key": "Authorization", "value": "Bearer YOUR_JWT_TOKEN" }
+        ],
+        "url": { "raw": "http://localhost:5000/api/provider-health", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "provider-health"] }
+      }
+    },
+    {
+      "name": "Metrics",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:5000/metrics", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["metrics"] }
+      }
+    },
+    {
+      "name": "Payment",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-API-KEY", "value": "YOUR_API_KEY_HERE" },
+          { "key": "Authorization", "value": "Bearer YOUR_JWT_TOKEN" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"transactionId\": \"{{guid}}\",\n  \"amount\": 100.0,\n  \"currency\": \"TRY\",\n  \"bankCode\": \"400000\",\n  \"cardToken\": \"SAMPLE_TOKEN\"\n}"
+        },
+        "url": { "raw": "http://localhost:5000/api/payments", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "payments"] }
+      }
+    }
+  ]
+}
+{
+  "info": {
+    "name": "PayHub API Test Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Provider Health",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "X-API-KEY", "value": "YOUR_API_KEY_HERE" },
+          { "key": "Authorization", "value": "Bearer YOUR_JWT_TOKEN" }
+        ],
+        "url": { "raw": "http://localhost:5000/api/provider-health", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "provider-health"] }
+      }
+    },
+    {
+      "name": "Metrics",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:5000/metrics", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["metrics"] }
+      }
+    },
+    {
+      "name": "Payment",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-API-KEY", "value": "YOUR_API_KEY_HERE" },
+          { "key": "Authorization", "value": "Bearer YOUR_JWT_TOKEN" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"transactionId\": \"{{guid}}\",\n  \"amount\": 100.0,\n  \"currency\": \"TRY\",\n  \"bankCode\": \"400000\",\n  \"cardToken\": \"SAMPLE_TOKEN\"\n}"
+        },
+        "url": { "raw": "http://localhost:5000/api/payments", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "payments"] }
+      }
+    }
+  ]
+}

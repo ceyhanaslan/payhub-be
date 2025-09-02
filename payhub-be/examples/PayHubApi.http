@@ -1,35 +1,58 @@
 ### API Health Test
-GET http://localhost:5000/api/provider-health
+GET http://localhost:5043/api/provider-health
 X-API-KEY: YOUR_API_KEY_HERE
 Authorization: Bearer YOUR_JWT_TOKEN
 
 ### Metrics Test
-GET http://localhost:5000/metrics
+GET http://localhost:5043/metrics
 
-### Payment Test
-POST http://localhost:5000/api/payments
+### Sipay Payment Test (Visa Card)
+POST http://localhost:5043/api/payments
 Content-Type: application/json
 X-API-KEY: YOUR_API_KEY_HERE
 Authorization: Bearer YOUR_JWT_TOKEN
 
 {
-  "transactionId": "{{guid}}",
+  "transactionId": "{{$guid}}",
   "amount": 100.0,
   "currency": "TRY",
-  "bankCode": "400000",
-  "cardToken": "SAMPLE_TOKEN"
+  "bankCode": "450803",
+  "cardToken": "SIPAY_VISA_TOKEN",
+  "customerEmail": "test@example.com",
+  "customerPhone": "5551234567",
+  "customerIp": "192.168.1.1"
 }
 
-### Fallback/Timeout Test (simulate provider error)
-POST http://localhost:5000/api/payments
+### Sipay Payment Test (Master Card)
+POST http://localhost:5043/api/payments
 Content-Type: application/json
 X-API-KEY: YOUR_API_KEY_HERE
 Authorization: Bearer YOUR_JWT_TOKEN
 
 {
-  "transactionId": "{{guid}}",
+  "transactionId": "{{$guid}}",
+  "amount": 250.0,
+  "currency": "TRY",
+  "bankCode": "540667",
+  "cardToken": "SIPAY_MASTER_TOKEN",
+  "customerEmail": "test@example.com",
+  "customerPhone": "5551234567",
+  "customerIp": "192.168.1.1"
+}
+
+### Fallback/Timeout Test (unknown bank code)
+POST http://localhost:5043/api/payments
+Content-Type: application/json
+X-API-KEY: YOUR_API_KEY_HERE
+Authorization: Bearer YOUR_JWT_TOKEN
+
+{
+  "transactionId": "{{$guid}}",
   "amount": 100.0,
   "currency": "TRY",
   "bankCode": "600000",
-  "cardToken": "SAMPLE_TOKEN"
+  "cardToken": "FALLBACK_TOKEN",
+  "customerEmail": "test@example.com",
+  "customerPhone": "5551234567",
+  "customerIp": "192.168.1.1"
 }

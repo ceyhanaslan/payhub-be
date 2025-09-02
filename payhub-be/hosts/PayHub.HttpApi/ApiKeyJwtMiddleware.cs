@@ -17,6 +17,17 @@ public class ApiKeyJwtMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
+        // Public endpoints - no authentication required
+        var publicEndpoints = new[]
+{
+            "/openapi", "/scalar", "/swagger", "/metrics", "/health"
+        };
+        if (publicEndpoints.Any(endpoint => context.Request.Path.StartsWithSegments(endpoint)))
+        {
+            await _next(context);
+            return;
+        }
+
         // API Key kontrolü
         if (!context.Request.Headers.TryGetValue(_apiKeyHeader, out var apiKey) || apiKey != _expectedApiKey)
         {
@@ -36,7 +47,7 @@ public class ApiKeyJwtMiddleware
         try
         {
             var handler = new JwtSecurityTokenHandler();
-            handler.ReadJwtToken(token); // Sadece format kontrolü, gerçek doğrulama için ek ayar gerekir
+            handler.ReadJwtToken(token);
         }
         catch
         {

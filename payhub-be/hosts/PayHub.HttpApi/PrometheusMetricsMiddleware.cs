@@ -1,7 +1,8 @@
-using Microsoft.AspNetCore.Http;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Linq;
+
+using Microsoft.AspNetCore.Http;
 
 public class PrometheusMetricsMiddleware
 {
