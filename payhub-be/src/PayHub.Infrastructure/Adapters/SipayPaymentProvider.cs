@@ -1,19 +1,18 @@
 namespace PayHub.Infrastructure.Adapters;
 
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
+using System;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+
 using PayHub.Application.Interfaces;
-using PayHub.Domain;
 
 public class SipayPaymentProvider : IPaymentProvider
 {
@@ -92,10 +91,56 @@ public class SipayPaymentProvider : IPaymentProvider
 
             if (response.IsSuccessStatusCode)
             {
-                var tokenResponse = JsonSerializer.Deserialize<SipayTokenResponse>(responseContent);
-                if (tokenResponse?.StatusCode == 100)
+                // Sipay API bazen array içinde döndürebilir, bazen de direkt obje olarak
+                // Case-insensitive olarak deserialize edip snake_case/PascalCase eşleştirmesi sağlanır
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                
+                try 
                 {
-                    return tokenResponse.Data?.Token;
+                    // Önce düz obje olarak deneyeceğiz
+                    var tokenResponse = JsonSerializer.Deserialize<SipayTokenResponse>(responseContent, options);
+                    if (tokenResponse?.StatusCode == 100)
+                    {
+                        return tokenResponse.Data?.Token;
+                    }
+                }
+                catch
+                {
+                    // Obje olarak deserialize edilemezse, array olabilir
+                    try
+                    {
+                        var tokenResponseArray = JsonSerializer.Deserialize<SipayTokenResponse[]>(responseContent, options);
+                        if (tokenResponseArray?.Length > 0 && tokenResponseArray[0]?.StatusCode == 100)
+                        {
+                            return tokenResponseArray[0].Data?.Token;
+                        }
+                    }
+                    catch
+                    {
+                        // Son çare olarak JsonDocument ile ayrıştırmayı deneyelim
+                        try
+                        {
+                            using var doc = JsonDocument.Parse(responseContent);
+                            
+                            // Array kontrolü yapalım
+                            if (doc.RootElement.ValueKind == JsonValueKind.Array)
+                            {
+                                var firstItem = doc.RootElement[0];
+                                if (TryGetTokenFromElement(firstItem, out var token))
+                                    return token;
+                            }
+                            // Tekil obje kontrolü
+                            else if (doc.RootElement.ValueKind == JsonValueKind.Object)
+                            {
+                                if (TryGetTokenFromElement(doc.RootElement, out var token))
+                                    return token;
+                            }
+                        }
+                        catch (Exception docEx)
+                        {
+                            _logger.LogError(docEx, "Error parsing token response with JsonDocument");
+                        }
+                    }
                 }
             }
 
@@ -107,6 +152,34 @@ public class SipayPaymentProvider : IPaymentProvider
             _logger.LogError(ex, "Exception getting Sipay token");
             return null;
         }
+    }
+    
+    private bool TryGetTokenFromElement(JsonElement element, out string? token)
+    {
+        token = null;
+        
+        // status_code veya StatusCode kontrolü
+        if ((element.TryGetProperty("status_code", out var statusCodeElement) || 
+             element.TryGetProperty("StatusCode", out statusCodeElement)) && 
+            statusCodeElement.TryGetInt32(out var statusCode) && 
+            statusCode == 100)
+        {
+            // data veya Data özelliğini kontrol et
+            if (element.TryGetProperty("data", out var dataElement) || 
+                element.TryGetProperty("Data", out dataElement))
+            {
+                // token veya Token özelliğini kontrol et
+                if ((dataElement.TryGetProperty("token", out var tokenElement) || 
+                     dataElement.TryGetProperty("Token", out tokenElement)) && 
+                    tokenElement.ValueKind == JsonValueKind.String)
+                {
+                    token = tokenElement.GetString();
+                    return true;
+                }
+            }
+        }
+        
+        return false;
     }
 
     private async Task<bool> ProcessPaymentWithTokenAsync(PayHub.Application.Interfaces.PaymentRequest request, string token, CancellationToken cancellationToken)
@@ -171,12 +244,39 @@ public class SipayPaymentProvider : IPaymentProvider
 
             if (response.IsSuccessStatusCode)
             {
-                var paymentResponse = JsonSerializer.Deserialize<SipayPaymentResponse>(responseContent);
-                if (paymentResponse?.StatusCode == 100 && paymentResponse.Data?.PaymentStatus == 1)
+                // Case-insensitive deserialization
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                
+                try
                 {
-                    _logger.LogInformation("Sipay payment successful for TransactionId: {TransactionId}, OrderId: {OrderId}",
-                        request.TransactionId, paymentResponse.Data.OrderId);
-                    return true;
+                    // Önce düz obje olarak deneyeceğiz
+                    var paymentResponse = JsonSerializer.Deserialize<SipayPaymentResponse>(responseContent, options);
+                    if (paymentResponse?.StatusCode == 100 && paymentResponse.Data?.PaymentStatus == 1)
+                    {
+                        _logger.LogInformation("Sipay payment successful for TransactionId: {TransactionId}, OrderId: {OrderId}",
+                            request.TransactionId, paymentResponse.Data.OrderId);
+                        return true;
+                    }
+                }
+                catch
+                {
+                    // Obje olarak deserialize edilemezse, array olabilir
+                    try
+                    {
+                        var paymentResponseArray = JsonSerializer.Deserialize<SipayPaymentResponse[]>(responseContent, options);
+                        if (paymentResponseArray?.Length > 0 && 
+                            paymentResponseArray[0]?.StatusCode == 100 && 
+                            paymentResponseArray[0].Data?.PaymentStatus == 1)
+                        {
+                            _logger.LogInformation("Sipay payment successful (array response) for TransactionId: {TransactionId}, OrderId: {OrderId}",
+                                request.TransactionId, paymentResponseArray[0].Data?.OrderId);
+                            return true;
+                        }
+                    }
+                    catch (Exception arrayEx)
+                    {
+                        _logger.LogError(arrayEx, "Error deserializing payment array response");
+                    }
                 }
             }
 
@@ -218,12 +318,20 @@ public class SipayPaymentProvider : IPaymentProvider
 
     private static string GenerateRandomString(int length)
     {
+        // Kriptografik olarak güvenli rastgele sayı üreteci kullan
         const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        var random = new Random();
+        byte[] data = new byte[length];
+        using (var rng = RandomNumberGenerator.Create())
+        {
+            rng.GetBytes(data);
+        }
+
         var result = new StringBuilder(length);
         for (int i = 0; i < length; i++)
         {
-            result.Append(chars[random.Next(chars.Length)]);
+            // Byte değerini chars dizisindeki bir karaktere dönüştür
+            var index = data[i] % chars.Length;
+            result.Append(chars[index]);
         }
         return result.ToString();
     }
@@ -254,6 +362,89 @@ public class SipayPaymentProvider : IPaymentProvider
         var plainBytes = Encoding.UTF8.GetBytes(plainText);
         var encryptedBytes = encryptor.TransformFinalBlock(plainBytes, 0, plainBytes.Length);
         return Convert.ToBase64String(encryptedBytes);
+    }
+
+    public async Task<(string Content, int StatusCode)> PostProxyRawAsync(string path, string json, CancellationToken cancellationToken = default)
+    {
+        // Ensure we have a token
+        var token = await GetTokenAsync(cancellationToken);
+        if (string.IsNullOrEmpty(token))
+        {
+            _logger.LogError("Failed to get Sipay token for proxy request");
+            throw new InvalidOperationException("Unable to obtain Sipay token");
+        }
+
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        _httpClient.DefaultRequestHeaders.Clear();
+        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+        _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+
+        var response = await _httpClient.PostAsync($"{_baseUrl}{path}", content, cancellationToken);
+        var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
+
+        return (responseContent, (int)response.StatusCode);
+    }
+
+    public async Task<(string Content, int StatusCode)> PostProxyAsync(string path, object body, CancellationToken cancellationToken = default)
+    {
+        var json = JsonSerializer.Serialize(body);
+        return await PostProxyRawAsync(path, json, cancellationToken);
+    }
+
+    public async Task<(string Content, int StatusCode)> GetPosAsync(string jsonBody, CancellationToken cancellationToken = default)
+    {
+        return await PostProxyRawAsync("/api/getpos", jsonBody, cancellationToken);
+    }
+
+    public async Task<(string Content, int StatusCode)> InstallmentsAsync(string jsonBody, CancellationToken cancellationToken = default)
+    {
+        return await PostProxyRawAsync("/api/installments", jsonBody, cancellationToken);
+    }
+
+    public async Task<(string Content, int StatusCode)> CommissionsAsync(string jsonBody, CancellationToken cancellationToken = default)
+    {
+        return await PostProxyRawAsync("/api/commissions", jsonBody, cancellationToken);
+    }
+
+    public async Task<(string Content, int StatusCode)> PaySmart3DAsync(string jsonBody, CancellationToken cancellationToken = default)
+    {
+        return await PostProxyRawAsync("/api/paySmart3D", jsonBody, cancellationToken);
+    }
+
+    public async Task<(string Content, int StatusCode)> CompletePaymentAsync(string jsonBody, CancellationToken cancellationToken = default)
+    {
+        return await PostProxyRawAsync("/api/payment/complete", jsonBody, cancellationToken);
+    }
+
+    public async Task<(string Content, int StatusCode)> CheckStatusAsync(string jsonBody, CancellationToken cancellationToken = default)
+    {
+        return await PostProxyRawAsync("/api/checkstatus", jsonBody, cancellationToken);
+    }
+
+    public async Task<(string Content, int StatusCode)> ConfirmPaymentAsync(string jsonBody, CancellationToken cancellationToken = default)
+    {
+        return await PostProxyRawAsync("/api/confirmPayment", jsonBody, cancellationToken);
+    }
+
+    public async Task<(string Content, int StatusCode)> RefundAsync(string jsonBody, CancellationToken cancellationToken = default)
+    {
+        return await PostProxyRawAsync("/api/refund", jsonBody, cancellationToken);
+    }
+
+    public async Task<(string Content, int StatusCode)> SaveCardAsync(string jsonBody, CancellationToken cancellationToken = default)
+    {
+        return await PostProxyRawAsync("/api/saveCard", jsonBody, cancellationToken);
+    }
+
+    public async Task<(string Content, int StatusCode)> PayByCardTokenAsync(string jsonBody, CancellationToken cancellationToken = default)
+    {
+        return await PostProxyRawAsync("/api/payByCardToken", jsonBody, cancellationToken);
+    }
+
+    public async Task<(string Content, int StatusCode)> PayByCardTokenNonSecureAsync(string jsonBody, CancellationToken cancellationToken = default)
+    {
+        return await PostProxyRawAsync("/api/payByCardTokenNonSecure", jsonBody, cancellationToken);
     }
 }
 
