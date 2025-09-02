@@ -12,7 +12,6 @@ public static class CqrsServiceCollectionExtensions
     {
         services.AddHttpClient<SipayPaymentProvider>();
         services.AddScoped<IPaymentProvider, SipayPaymentProvider>();
-        services.AddScoped<IPaymentProvider, ExampleBankPaymentProvider>();
 
         services.AddScoped<RoutingEngine>();
         services.AddScoped<TransactionService>();
